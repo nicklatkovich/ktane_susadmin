@@ -19,7 +19,8 @@ Manual/font/
 Manual/img/*
 !Manual/img/Component/
 Manual/img/Component/*
-Manual/js/
+Manual/js/*
+Manual/pdfs/
 
 Assembly-CSharp*
 /*.sln

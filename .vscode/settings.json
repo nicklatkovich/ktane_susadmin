@@ -7,11 +7,14 @@
 	],
 	"editor.wordWrapColumn": 175,
 	"editor.wordWrap": "wordWrapColumn",
-	"omnisharp.useEditorFormattingSettings": false,
+
+	"dotnet.server.useOmnisharp": true,
+	"omnisharp.useModernNet": false,
 	"[csharp]": {
-		"editor.insertSpaces": false,
-		"editor.tabSize": 4,
+		"editor.defaultFormatter": "ms-dotnettools.csharp",
+		"editor.formatOnSave": false
 	},
+
 	"html.format.wrapLineLength": 0,
 	"[html]": {
 		"editor.wrappingIndent": "indent",
