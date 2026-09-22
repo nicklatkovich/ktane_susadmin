@@ -21,6 +21,7 @@ public class SusadminModule : MonoBehaviour {
 	public TextMesh Console;
 	public KMBombInfo Bomb;
 	public KMBombModule Module;
+	public KMAudio Audio;
 	public KMSelectable Selectable;
 
 	public HashSet<string> InstalledVirusesName { get { return new HashSet<string>(installedViruses.Select(id => SusadminData.GetVirusName(id))); } }
@@ -201,8 +202,7 @@ public class SusadminModule : MonoBehaviour {
 		linePointer = linePointer == 0 ? LINES_COUNT - 1 : linePointer - 1;
 		readyToWrite = false;
 		shouldUpdateText = true;
-		solved = true;
-		Module.HandlePass();
+		Solve();
 	}
 
 	private IEnumerator ProcessCommand() {
@@ -338,8 +338,7 @@ public class SusadminModule : MonoBehaviour {
 				yield return Loader("Solving module");
 				WriteLine("Module solved");
 				linePointer = linePointer == 0 ? LINES_COUNT : linePointer - 1;
-				solved = true;
-				Module.HandlePass();
+				Solve();
 				yield return SelfDestruct();
 				yield break;
 			}
@@ -348,6 +347,12 @@ public class SusadminModule : MonoBehaviour {
 		}
 		WriteLine(PrintError("ERROR") + ": Unknown command");
 		EndCommandProcessing();
+	}
+
+	private void Solve() {
+		solved = true;
+		Module.HandlePass();
+		Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.CorrectChime, transform);
 	}
 
 	private IEnumerator SelfDestruct() {
